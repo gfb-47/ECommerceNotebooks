@@ -9,4 +9,4 @@ Login
  		|
  		|__> Carrinho
  				|__> Finalização Compra (Endereço, Pagamento)
- 							|__> Home
+ 							|__> Home 
