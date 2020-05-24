@@ -1,0 +1,12 @@
+Tema do E-Commerce: Notebook
+
+Login 
+ |__> Home (Lista Itens)
+ 		|__> Info Item (Descrição)
+ 		| 		|__> Carrinho
+ 		|				|__> Finalização Compra (Endereço, Pagamento)
+ 		|							|__> Home
+ 		|
+ 		|__> Carrinho
+ 				|__> Finalização Compra (Endereço, Pagamento)
+ 							|__> Home
