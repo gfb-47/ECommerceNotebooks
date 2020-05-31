@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Consulta de Notebook</title>
+</h:head>
+<h:body>
+	<h:messages 
+		errorStyle="color:red" 
+		warnStyle="color:orange" 
+		infoStyle="color:green"
+		globalOnly="false"/>
+		
+	<h1>.:Consulta de Notebook:.</h1>	
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:selectOneMenu value="#{consultaNotebookController.tipoFiltro}">
+			   <f:selectItem itemValue="1" itemLabel="Marca" />
+			   <f:selectItem itemValue="2" itemLabel="Modelo" />                   
+			</h:selectOneMenu>
+			<h:panelGroup>
+				<h:inputText 
+					value="#{consultaNotebookController.filtro}" />
+			</h:panelGroup>
+			<h:commandButton value="Pesquisar"
+				actionListener="#{consultaNotebookController.pesquisar}" />
+			<h:commandButton value="+ Novo Notebook"
+				action="#{consultaNotebookController.novoNotebook}" />
+		
+		</h:panelGrid>
+			
+	</h:form>
+	<h:form id="formDataTable">
+		<h:dataTable id="dataTable" value="#{consultaNotebookController.listaNotebook}" 
+					 var="obj">
+			   <h:column>
+			      <f:facet name="header">Modelo</f:facet>
+			      <h:outputLabel value="#{obj.modelo}"/>
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Marca</f:facet>
+			      <h:outputLabel value="#{obj.marca}"/>
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Processador</f:facet>
+			      <h:outputLabel value="#{obj.processador}"/>
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Placa de Vídeo</f:facet>
+			      <h:outputLabel value="#{obj.placaVideo}"/>
+			   </h:column>
+			   <h:column>
+			      <f:facet name="header">Ação</f:facet>
+			      <h:commandLink value="Editar" 
+			      		action="#{consultaNotebookController.editar(obj)}"/>
+			   </h:column>		   
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

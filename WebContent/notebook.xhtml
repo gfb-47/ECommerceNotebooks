@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Cadastro de Notebooks</title>
+</h:head>
+<h:body>
+	<h:messages errorStyle="color:red" warnStyle="color:orange"
+		infoStyle="color:green" globalOnly="false" />
+
+	<h1>.:Cadastro de Notebooks:.</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Modelo" />
+			<h:panelGroup>
+				<h:inputText id="itModelo"
+					value="#{notebookController.entity.modelo}" />
+				<h:message for="itModelo" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Marca:" />
+			<h:panelGroup>
+				<h:inputText id="itMarca" value="#{notebookController.entity.marca}" />
+				<h:message for="itMarca" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Processador:" />
+			<h:panelGroup>
+				<h:inputText id="itProcessador"
+					value="#{notebookController.entity.processador}" />
+				<h:message for="itProcessador" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Placa de Vídeo:" />
+			<h:panelGroup>
+				<h:inputText id="itPlacaVideo"
+					value="#{notebookController.entity.placaVideo}" />
+				<h:message for="itPlacaVideo" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Memoria RAM:" />
+			<h:panelGroup>
+				<h:inputText id="itMemoriaRAM"
+					value="#{notebookController.entity.memoriaRAM}" />
+				<h:message for="itMemoriaRAM" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Portas USB:" />
+			<h:panelGroup>
+				<h:inputText id="itPortasUSB"
+					value="#{notebookController.entity.portasUSB}" />
+				<h:message for="itPortasUSB" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Polegadas:" />
+			<h:panelGroup>
+				<h:inputText id="itPolegadas"
+					value="#{notebookController.entity.polegadas}" />
+				<h:message for="itPolegadas" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Sistema Operacional:" />
+			<h:selectOneMenu value="#{notebookController.entity.sistemaOperacional}">
+				<f:selectItems value="#{notebookController.listaTipoSO}"
+					var="tipo" itemLabel="#{tipo.label}" />
+			</h:selectOneMenu>
+
+
+		</h:panelGrid>
+		<h:commandButton value="Incluir"
+			disabled="#{notebookController.entity.id != null}"
+			actionListener="#{notebookController.incluir}" />
+		<h:commandButton value="Alterar"
+			disabled="#{notebookController.entity.id == null}"
+			actionListener="#{notebookController.alterar}" />
+		<h:commandButton value="Excluir"
+			disabled="#{notebookController.entity.id == null}"
+			actionListener="#{notebookController.remover}">
+			<f:ajax execute="@this" render="@form formDataTable" />
+		</h:commandButton>
+		<h:commandButton value="Limpar"
+			actionListener="#{notebookController.limpar}">
+			<f:ajax execute="@this" render="@form" />
+		</h:commandButton>
+	</h:form>
+</h:body>
+</html>
