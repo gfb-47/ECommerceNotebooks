@@ -4,6 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import application.Util;
+import application.Session;
 import dao.UsuarioDAO;
 import model.Usuario;
 
@@ -18,8 +19,12 @@ public class LoginController {
 		Usuario usuario = dao.verificarLoginSenha(getUsuario().getLogin(),
 				Util.hashSHA256(getUsuario().getSenha()));
 		
-		if (usuario != null)
+		if (usuario != null) {
+			// adicionando um ussuario na sessao
+			Session.getInstance().setAttribute("usuarioLogado", usuario);
+			// redirecionando para o template
 			return "consultanotebook.xhtml?faces-redirect=true";
+		}
 		Util.addErrorMessage("Login ou Senha inválido.");
 		return "";
 	}
