@@ -6,7 +6,7 @@
 	<artifactId>books</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<dependencies>  
+	<dependencies>   
 	
 
 		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.faces -->

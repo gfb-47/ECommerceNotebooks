@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
 	<title>Login</title>
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="resources/css/login.css" />
 </h:head>
-<h:body>
-	<h:messages 
-		id="messages"
-		errorStyle="color:red" 
-		warnStyle="color:orange" 
-		infoStyle="color:green"
-		globalOnly="false"/>
-		
-	<h1>.:Acesso:.</h1>
-	<h:form>
-		<h:panelGrid columns="2">
+<body>
+	<div class="container login-container">
+		<div class="row">
+			<div class="col-md-6 login-form-1">
+				<h3>Login Form 1</h3>
 
-			<h:outputLabel value="Login:" />
-			<h:inputText value="#{loginController.usuario.login}" />
-			
-			<h:outputLabel value="Senha:" />
-			<h:panelGroup>
-				<h:inputSecret 
-					id="isSenha"
-					value="#{loginController.usuario.senha}" 
-					required="true"
-					requiredMessage="Esse campo não pode ser nulo."/>
-				<h:message for="isSenha" style="color:red"/>	
- 			</h:panelGroup>
-		
-		</h:panelGrid>
-		<h:commandButton value="Entrar"
-			action="#{loginController.logar}" >
-			<f:ajax execute="@form" render="@form messages"/>
-		</h:commandButton>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Your Email *"
+						value="" />
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control"
+						placeholder="Your Password *" value="" />
+				</div>
+				<h:commandButton styleClass="btnSubmit" value="Login"
+					action="#{loginController.logar}">
+				</h:commandButton>
+				<div class="form-group">
+					<a href="#" class="btnForgetPwd">Forget Password?</a>
+				</div>
 
-		<h:commandButton value="Limpar" 
-			actionListener="#{loginController.limpar}">
-			<f:ajax execute="@this" render="@form messages"/>
-		</h:commandButton>		
-	</h:form>
-</h:body>
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
 </html>
