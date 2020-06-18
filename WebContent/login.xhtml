@@ -15,26 +15,32 @@
 	<link rel="stylesheet" href="resources/css/login.css" />
 </h:head>
 <body>
+
 	<div class="container login-container">
 		<div class="row">
 			<div class="col-md-6 login-form-1">
-				<h3>Login Form 1</h3>
-
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Your Email *"
-						value="" />
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control"
-						placeholder="Your Password *" value="" />
-				</div>
-				<h:commandButton styleClass="btnSubmit" value="Login"
-					action="#{loginController.logar}">
-				</h:commandButton>
-				<div class="form-group">
-					<a href="#" class="btnForgetPwd">Forget Password?</a>
-				</div>
-
+				<h3>Login</h3>
+				<h:form>
+					<h:messages id="messages" errorStyle="color:red"
+						warnStyle="color:orange" infoStyle="color:green"
+						globalOnly="false" />
+					<div class="form-group">
+						<input type="text" class="form-control"
+							placeholder="Your Username *"
+							jsf:value="#{loginController.usuario.login}" />
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control"
+							placeholder="Your Password *"
+							jsf:value="#{loginController.usuario.senha}" />
+					</div>
+					
+					<h:commandButton styleClass="btnSubmit" value="Login"
+						action="#{loginController.logar}"  >
+					</h:commandButton>
+				
+					
+				</h:form>
 			</div>
 
 		</div>

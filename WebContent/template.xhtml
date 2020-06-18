@@ -14,11 +14,11 @@
 		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="resources/css/template.css" />
+	<link rel="stylesheet" href="resources/css/style.css" />
+	<link rel="stylesheet" href="resources/css/menu.css" />
 </h:head>
 
-<h:body>	
-	
+<h:body style="background:#e5e3e5">
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		rel="stylesheet"
@@ -36,31 +36,29 @@
 
 			<div class="collapse navbar-collapse justify-content-end"
 				id="navbarsExampleDefault">
+				
 				<ul class="navbar-nav m-auto">
-					<li class="nav-item"><a class="nav-link" href="index.html">Home</a>
+					<li class="nav-item"><a class="nav-link" href="template.xhtml">Home</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="category.html">Categories</a>
+					<li class="nav-item"><a class="nav-link"
+						href="consultanotebook.xhtml">Consulta</a></li>
+					<li class="nav-item"><a class="nav-link" href="cart.html">Carrinho</a>
 					</li>
-					<li class="nav-item active"><a class="nav-link"
-						href="product.html">Product <span class="sr-only">(current)</span></a>
+					<li class="nav-item"><a class="nav-link" href="contact.html" >Contato</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="cart.html">Cart</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a>
-					</li>
-				</ul>				
+					
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+
+	
+					<a class="btn btn-success btn-sm ml-3"  >Sair </a>
+				 
+						
+				</form>
 			</div>
 		</div>
 	</nav>
-	<h:form>
-					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"
-						rendered="#{templateController.usuarioLogado != null}"/>
-					<h:commandLink value=" (Sair)"   
-						action="#{templateController.encerrarSessao}"
-						rendered="#{templateController.usuarioLogado != null}"
-						style="color:white"/>
-				</h:form>	
-	
+
 	<ui:insert name="content">
 		<div id="container">
 			<!-- tab panes -->
@@ -198,6 +196,17 @@
 			<div style="clear: both; height: 40px"></div>
 		</div>
 		<!-- END container -->
+	</ui:insert>
+
+
+	<ui:insert name="footer">
+		<h1></h1>
+		<h1></h1>
+		<h1></h1>
+		<h1></h1>
+		<h1></h1>
+		<h1></h1>
+		<h1></h1>
 		<div id="footer">
 			<!-- First Column -->
 			<div class="one-fourth">
@@ -232,8 +241,9 @@
 			<!-- Fourth Column -->
 			<div class="one-fourth last">
 				<h3>Socialize</h3>
-				<img src="img/icon_fb.png" alt="" /> <img src="img/icon_twitter.png"
-					alt="" /> <img src="img/icon_in.png" alt="" />
+				<img src="img/icon_fb.png" alt="" /> <img
+					src="img/icon_twitter.png" alt="" /> <img src="img/icon_in.png"
+					alt="" />
 			</div>
 			<div style="clear: both"></div>
 		</div>
