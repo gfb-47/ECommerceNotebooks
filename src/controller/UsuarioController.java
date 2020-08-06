@@ -3,10 +3,12 @@ package controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import application.Util;
+import model.TipoUsuario;
 import dao.UsuarioDAO;
 import model.Usuario;
 
@@ -28,6 +30,8 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 			entity = new Usuario();
 		return entity;
 	}
+	
+	
 	
 	@Override
 	public void limpar() {
@@ -56,6 +60,10 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 		getEntity().setSenha(senha);
 		
 		return true;
+	}
+	
+	public TipoUsuario[] getListaTipoUsuario() {
+		return TipoUsuario.values();
 	}
 
 

@@ -3,20 +3,17 @@ package model;
 public class Notebook extends Entity<Notebook> {
 
 	private String modelo;
-
 	private String marca;
-
 	private String processador;
-
 	private String placaVideo;
-
 	private Integer memoriaRAM;
-
 	private Integer portasUSB;
-
 	private Integer polegadas;
-
 	private TipoSO sistemaOperacional;
+	private Float preco;
+	private Integer estoque;
+	
+	
 
 	public String getModelo() {
 		return modelo;
@@ -80,6 +77,23 @@ public class Notebook extends Entity<Notebook> {
 
 	public void setSistemaOperacional(TipoSO sistemaOperacional) {
 		this.sistemaOperacional = sistemaOperacional;
+	}
+
+
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
+
+	public Float getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Float preco) {
+		this.preco = preco;
 	}
 
 }

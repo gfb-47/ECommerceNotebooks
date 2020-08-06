@@ -71,6 +71,20 @@
 					<f:selectItems value="#{notebookController.listaTipoSO}" var="tipo"
 						itemLabel="#{tipo.label}" />
 				</h:selectOneMenu>
+				
+				<h:outputLabel value="Preço: " />
+				<h:panelGroup>
+					<h:inputText id="itPreco"
+						value="#{notebookController.entity.preco}" />
+					<h:message for="itPreco" style="color:red" />
+				</h:panelGroup>
+				
+				<h:outputLabel value="Estoque:" />
+				<h:panelGroup>
+					<h:inputText id="itEstoque"
+						value="#{notebookController.entity.estoque}" />
+					<h:message for="itEstoque" style="color:red" />
+				</h:panelGroup>
 
 
 			</h:panelGrid>

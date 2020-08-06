@@ -15,7 +15,6 @@
 #menu_top {
 	    width: 960px;
         margin: 0 auto 0;
-		background:;
 }
 
 #menu_top:before,
@@ -349,7 +348,7 @@
 
 #menu2 {
         margin: 22px auto 0;
-		background:;
+	
 }
 
 #menu2:before,
@@ -513,7 +512,7 @@
     Sidebar Menu 
 --------------------------------*/
 
-.sidebar_menu {}
+
 
 .sidebar_menu li {padding: 10px 5px; border-bottom: 1px dotted #999}
 

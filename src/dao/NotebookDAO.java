@@ -20,9 +20,9 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO notebook ");
-		sql.append("	(modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional) ");
+		sql.append("	(modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco , estoque) ");
 		sql.append("VALUES ");
-		sql.append("	( ? , ? , ? , ? , ? , ? , ? , ? ) ");
+		sql.append("	( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) ");
 
 		PreparedStatement stat = null;
 		try {
@@ -51,6 +51,16 @@ public class NotebookDAO extends DAO<Notebook> {
 			else
 				stat.setNull(8, java.sql.Types.INTEGER);
 			
+			if (notebook.getPreco() != null)
+				stat.setFloat(9, notebook.getPreco());
+			else
+				stat.setNull(9, java.sql.Types.FLOAT);
+			
+			if (notebook.getEstoque() != null)
+				stat.setInt(10, notebook.getEstoque());
+			else
+				stat.setNull(10, java.sql.Types.INTEGER);
+			
 
 			stat.execute();
 
@@ -76,7 +86,7 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE notebook ");
-		sql.append("	SET modelo=?, marca=?, processador=?, placavideo=?, memoriaram=?, portasusb=?, polegadas=?, sistemaoperacional=?) ");
+		sql.append("	SET modelo=?, marca=?, processador=?, placavideo=?, memoriaram=?, portasusb=?, polegadas=?, sistemaoperacional=?, preco=?, estoque=? ");
 		sql.append("WHERE ");
 		sql.append("	id = ? ");
 
@@ -100,9 +110,11 @@ public class NotebookDAO extends DAO<Notebook> {
 			if (notebook.getPortasUSB() != null)
 				stat.setInt(7, notebook.getPolegadas());
 			else
-				stat.setNull(6, java.sql.Types.INTEGER);
+				stat.setNull(7, java.sql.Types.INTEGER);
 
 			stat.setInt(8, notebook.getSistemaOperacional().getId());
+			stat.setInt(9, notebook.getEstoque());
+			stat.setInt(10, notebook.getId());
 
 
 			stat.execute();
@@ -185,6 +197,8 @@ public class NotebookDAO extends DAO<Notebook> {
 				notebook.setPortasUSB(rs.getInt("portasusb"));
 				notebook.setPolegadas(rs.getInt("polegadas"));
 				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("tipousuario")));
+				notebook.setPreco(rs.getFloat("preco"));
+				notebook.setEstoque(rs.getInt("estoque"));
 				listaNotebook.add(notebook);
 			}
 
@@ -204,7 +218,7 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	id, modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional ");
+		sql.append(" 	id, modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco, estoque ");
 		sql.append("FROM ");
 		sql.append("	notebook ");
 		sql.append("WHERE ");
@@ -229,8 +243,10 @@ public class NotebookDAO extends DAO<Notebook> {
 				notebook.setPlacaVideo(rs.getString("placavideo"));
 				notebook.setMemoriaRAM(rs.getInt("memoriaram"));
 				notebook.setPortasUSB(rs.getInt("portasusb"));
-				notebook.setPolegadas(rs.getInt("polegadas"));
+				notebook.setPolegadas(rs.getInt("polegadas"));				
 				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("sistemaoperacional")));
+				notebook.setPreco(rs.getFloat("preco"));
+				notebook.setEstoque(rs.getInt("estoque"));
 				listaNotebook.add(notebook);
 			}
 
@@ -250,7 +266,7 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	id, modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional ");
+		sql.append(" 	id, modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco, estoque	");
 		sql.append("FROM ");
 		sql.append("	notebook ");
 		sql.append("WHERE ");
@@ -277,6 +293,8 @@ public class NotebookDAO extends DAO<Notebook> {
 				notebook.setPortasUSB(rs.getInt("portasusb"));
 				notebook.setPolegadas(rs.getInt("polegadas"));
 				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("sistemaoperacional")));
+				notebook.setPreco(rs.getFloat("preco"));
+				notebook.setEstoque(rs.getInt("estoque"));
 				listaNotebook.add(notebook);
 			}
 
@@ -296,7 +314,7 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	(modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional) ");
+		sql.append(" 	(modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco, estoque) ");
 		sql.append("FROM ");
 		sql.append("	notebook ");
 		sql.append("WHERE ");
@@ -320,6 +338,8 @@ public class NotebookDAO extends DAO<Notebook> {
 				notebook.setPortasUSB(rs.getInt("portasusb"));
 				notebook.setPolegadas(rs.getInt("polegadas"));
 				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("tipousuario")));
+				notebook.setPreco(rs.getFloat("preco"));
+				notebook.setEstoque(rs.getInt("estoque"));
 			}
 
 		} catch (SQLException e) {

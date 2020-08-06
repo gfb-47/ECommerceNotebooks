@@ -4,7 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="template.xhtml">
+<ui:composition template="template.xhtml">	
 	<h:head>
 		<title>Consulta de Notebook</title>
 	</h:head>
@@ -48,6 +48,14 @@
 				<h:column>
 					<f:facet name="header">Placa de Vídeo</f:facet>
 					<h:outputLabel value="#{obj.placaVideo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Preço</f:facet>
+					<h:outputLabel value="#{obj.preco}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estoque</f:facet>
+					<h:outputLabel value="#{obj.estoque}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Ação</f:facet>

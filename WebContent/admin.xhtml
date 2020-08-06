@@ -6,14 +6,14 @@
 
 <ui:composition template="template.xhtml">
 	<h:head>
-		<title>Cadastro de Usuário</title>
+		<title>Crud de Usuarios</title>
 	</h:head>
 
 	<h:messages errorStyle="color:red" warnStyle="color:orange"
 		infoStyle="color:green" globalOnly="false" />
 
-	<ui:define name="content">
-		<h:form>
+	<ui:define name="content" >
+		<h:form rendered="#{templateController.usuarioLogado.tipoUsuario == TipoUsuario.ADMINISTRADOR}">
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome:" />
 				<h:panelGroup>
@@ -39,6 +39,14 @@
 				<h:outputLabel value="E-mail:" />
 				<h:inputText value="#{usuarioController.entity.email}" />
 			</h:panelGrid>
+			<h:outputLabel value="Tipo de Usuário:" />
+			<h:selectOneMenu 
+				value="#{usuarioController.entity.tipoUsuario}">
+				<f:selectItems 
+					value="#{usuarioController.listaTipoUsuario}"
+							var="tipo" 
+							itemLabel="#{tipo.label}"/>
+			</h:selectOneMenu>
 			
 			<h:panelGrid columns="4">
 				<h:commandButton value="Incluir"
@@ -59,7 +67,36 @@
 				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
-	
+	<h:form id="formDataTable" rendered="#{templateController.usuarioLogado.tipoUsuario == TipoUsuario.ADMINISTRADOR}">
+			<h:dataTable id="dataTable" value="#{usuarioController.listaUsuario}"
+				var="obj">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputLabel value="#{obj.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputLabel value="#{obj.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Login</f:facet>
+					<h:outputLabel value="#{obj.login}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
+					<h:outputLabel value="#{obj.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo Usuário</f:facet>
+					<h:outputLabel value="#{obj.tipoUsuario.label}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ação</f:facet>
+					<h:commandLink value="Editar"
+						actionListener="#{usuarioController.editar(obj)}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

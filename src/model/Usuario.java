@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -22,6 +23,8 @@ public class Usuario extends Entity<Usuario> {
 	@Email(message = "E-mail inválido.")
 	@NotEmpty(message = "O E-mail deve ser informado.")
 	private String email;
+	
+	private TipoUsuario tipoUsuario = TipoUsuario.CLIENTE;
 
 	public String getNome() {
 		return nome;
@@ -61,6 +64,14 @@ public class Usuario extends Entity<Usuario> {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 }

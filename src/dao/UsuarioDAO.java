@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.TipoUsuario;
 import model.TipoSO;
 import model.Usuario;
 
@@ -19,9 +20,9 @@ public class UsuarioDAO extends DAO<Usuario> {
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO usuario ");
-		sql.append("	(nome, login, senha, email) ");
+		sql.append("	(nome, login, senha, email, tipousuario) ");
 		sql.append("VALUES ");
-		sql.append("	( ? , ? , ? , ? ) ");
+		sql.append("	( ? , ? , ? , ? , ? ) ");
 		
 		PreparedStatement stat = null;
 		try {
@@ -30,6 +31,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 			stat.setString(2, usuario.getLogin());
 			stat.setString(3, usuario.getSenha());
 			stat.setString(4, usuario.getEmail());
+			stat.setInt(5, usuario.getTipoUsuario().getId());
 			
 			stat.execute();
 			
@@ -55,7 +57,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE usuario ");
-		sql.append("	SET nome=?, login=?, senha=?, email=? ");
+		sql.append("	SET nome=?, login=?, senha=?, email=?, tipoUsuario=? ");
 		sql.append("WHERE ");
 		sql.append("	id = ? ");
 		
@@ -66,7 +68,8 @@ public class UsuarioDAO extends DAO<Usuario> {
 			stat.setString(2, usuario.getLogin());
 			stat.setString(3, usuario.getSenha());
 			stat.setString(4, usuario.getEmail());
-			stat.setInt(5, usuario.getId());
+			stat.setInt(5, usuario.getTipoUsuario().getId());
+			stat.setInt(6, usuario.getId());
 			
 			stat.execute();
 			
@@ -125,7 +128,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	id, nome, login, senha, email ");
+		sql.append(" 	id, nome, login, senha, email, tipousuario ");
 		sql.append("FROM ");
 		sql.append("	usuario ");
 		
@@ -143,7 +146,8 @@ public class UsuarioDAO extends DAO<Usuario> {
 				usuario.setNome(rs.getString("nome"));
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
-				usuario.setEmail(rs.getString("email"));
+				usuario.setEmail(rs.getString("email"));				
+				usuario.setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 				
 				listaUsuario.add(usuario);
 			}
@@ -164,7 +168,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	id, nome, login, senha, email ");
+		sql.append(" 	id, nome, login, senha, email, tipousuario ");
 		sql.append("FROM ");
 		sql.append("	usuario ");
 		sql.append("WHERE ");
@@ -185,7 +189,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setEmail(rs.getString("email"));
-
+				usuario.setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 			}
 			
 		} catch (SQLException e) {
@@ -204,7 +208,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	id, nome, login, senha, email ");
+		sql.append(" 	id, nome, login, senha, email, tipousuario ");
 		sql.append("FROM ");
 		sql.append("	usuario ");
 		sql.append("WHERE ");
@@ -226,6 +230,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 				usuario.setLogin(rs.getString("login"));
 				usuario.setSenha(rs.getString("senha"));
 				usuario.setEmail(rs.getString("email"));
+				usuario.setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 			}
 			
 		} catch (SQLException e) {

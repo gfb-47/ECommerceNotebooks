@@ -16,6 +16,7 @@
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="resources/css/style.css" />
 	<link rel="stylesheet" href="resources/css/menu.css" />
+	<title>Home</title>
 </h:head>
 
 <h:body style="background:#e5e3e5">
@@ -26,7 +27,7 @@
 		crossorigin="anonymous" />
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Notebooks Store</a>
+			<a class="navbar-brand" href="template.xhtml">Notebooks Store</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarsExampleDefault"
 				aria-controls="navbarsExampleDefault" aria-expanded="false"
@@ -36,24 +37,36 @@
 
 			<div class="collapse navbar-collapse justify-content-end"
 				id="navbarsExampleDefault">
-				
+
 				<ul class="navbar-nav m-auto">
 					<li class="nav-item"><a class="nav-link" href="template.xhtml">Home</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
-						href="consultanotebook.xhtml">Consulta</a></li>
-					<li class="nav-item"><a class="nav-link" href="cart.html">Carrinho</a>
+						href="consultanotebook.xhtml">Produtos</a></li>
+					<li class="nav-item"><a class="nav-link" href="vendanotebook.xhtml">Venda</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="contact.html" >Contato</a>
+					<li class="nav-item"><a class="nav-link" href="carrinho.xhtml">Carrinho</a>
 					</li>
 					
+						<li class="nav-item"
+							jsf:rendered="#{templateController.usuarioLogado.tipoUsuario == TipoUsuario.ADMINISTRADOR}"><a
+							class="nav-link" href="admin.xhtml" >Usuarios</a></li>
+
+
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 
-	
-					<a class="btn btn-success btn-sm ml-3"  >Sair </a>
-				 
-						
+
+
+					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"
+						rendered="#{templateController.usuarioLogado != null}" />
+					<h:commandLink value=" (Sair)"
+						action="#{templateController.encerrarSessao}"
+						rendered="#{templateController.usuarioLogado != null}"
+						style="color:white" />
+
+
+
 				</form>
 			</div>
 		</div>
@@ -62,100 +75,10 @@
 	<ui:insert name="content">
 		<div id="container">
 			<!-- tab panes -->
-			<div id="prod_wrapper">
-				<div id="panes">
-					<div>
-						<img src="img/demo/1.jpg" alt="" />
-						<h5>Mauris elementum</h5>
-						<p>Nulla hendrerit commodo tortor, vitae elementum magna
-							convallis nec. Nam tempor nibh a purus aliquam et adipiscing elit
-							gravida. Ut vitae nunc a libero volutpat gravida. Nullam egestas
-							mi sit amet dui scelerisque eu laoreet nisi ultrices. Ut vitae
-							nunc a libero volutpat gravida. Nam tempor nibh a purus aliquam.
-						</p>
-						<p style="text-align: right; margin-right: 16px">
-							<a href="#" class="button">More Info</a> <a href="#"
-								class="button">Buy Now</a>
-						</p>
-					</div>
-					<div>
-						<img src="img/demo/2.jpg" alt="" />
-						<h5>Nulla hendrerit</h5>
-						<p>Nulla hendrerit commodo tortor, vitae elementum magna
-							convallis nec. Nam tempor nibh a purus aliquam et adipiscing elit
-							gravida. Ut vitae nunc a libero volutpat gravida. Nullam egestas
-							mi sit amet dui scelerisque eu laoreet nisi ultrices. Ut vitae
-							nunc a libero volutpat gravida. Nam tempor nibh a purus aliquam.
-						</p>
-						<p style="text-align: right; margin-right: 16px">
-							<a href="#" class="button">More Info</a> <a href="#"
-								class="button">Buy Now</a>
-						</p>
-					</div>
-					<div>
-						<img src="img/demo/3.jpg" alt="" />
-						<h5>Mauris elementum</h5>
-						<p>Nulla hendrerit commodo tortor, vitae elementum magna
-							convallis nec. Nam tempor nibh a purus aliquam et adipiscing elit
-							gravida. Ut vitae nunc a libero volutpat gravida. Nullam egestas
-							mi sit amet dui scelerisque eu laoreet nisi ultrices. Ut vitae
-							nunc a libero volutpat gravida. Nam tempor nibh a purus aliquam.
-						</p>
-						<p style="text-align: right; margin-right: 16px">
-							<a href="#" class="button">More Info</a> <a href="#"
-								class="button">Buy Now</a>
-						</p>
-					</div>
-					<div>
-						<img src="img/demo/4.jpg" alt="" />
-						<h5>Nam tempor nibh</h5>
-						<p>Nulla hendrerit commodo tortor, vitae elementum magna
-							convallis nec. Nam tempor nibh a purus aliquam et adipiscing elit
-							gravida. Ut vitae nunc a libero volutpat gravida. Nullam egestas
-							mi sit amet dui scelerisque eu laoreet nisi ultrices. Ut vitae
-							nunc a libero volutpat gravida. Nam tempor nibh a purus aliquam.
-						</p>
-						<p style="text-align: right; margin-right: 16px">
-							<a href="#" class="button">More Info</a> <a href="#"
-								class="button">Buy Now</a>
-						</p>
-					</div>
-					<div>
-						<img src="img/demo/5.jpg" alt="" />
-						<p>Nulla hendrerit commodo tortor, vitae elementum magna
-							convallis nec. Nam tempor nibh a purus aliquam et adipiscing elit
-							gravida. Ut vitae nunc a libero volutpat gravida. Nullam egestas
-							mi sit amet dui scelerisque eu laoreet nisi ultrices. Ut vitae
-							nunc a libero volutpat gravida. Nam tempor nibh a purus aliquam.
-						</p>
-						<p style="text-align: right; margin-right: 16px">
-							<a href="#" class="button">More Info</a> <a href="#"
-								class="button">Buy Now</a>
-						</p>
-					</div>
-				</div>
-				<!-- END tab panes -->
-				<br clear="all" />
-				<!-- navigator -->
-				<div id="prod_nav">
-					<ul>
-						<li><a href="#1"><img src="img/demo/thumb1.jpg" alt="" /><strong>Class
-									aptent</strong> $ 199</a></li>
-						<li><a href="#2"><img src="img/demo/thumb2.jpg" alt="" /><strong>Sed
-									dui risus</strong> $ 125</a></li>
-						<li><a href="#3"><img src="img/demo/thumb3.jpg" alt="" /><strong>Pellentesque
-									quis</strong> $ 480</a></li>
-						<li><a href="#4"><img src="img/demo/thumb4.jpg" alt="" /><strong>Mauris
-									elementum</strong> $ 1099</a></li>
-						<li><a href="#5"><img src="img/demo/thumb5.jpg" alt="" /><strong>Cras
-									et malesuada</strong> $ 99</a></li>
-					</ul>
-				</div>
-				<!-- close navigator -->
-			</div>
+
 			<!-- END prod wrapper -->
 			<div style="clear: both"></div>
-			<h1 style="padding: 20px 0">This is what we do</h1>
+			<h1 style="padding: 20px 0">A maior loja de Notebooks do Brasil</h1>
 			<blockquote>Nulla hendrerit commodo tortor, vitae
 				elementum magna convallis nec. Nam tempor nibh a purus aliquam et
 				adipiscing elit gravida. Ut vitae nunc a libero volutpat gravida.
@@ -163,7 +86,7 @@
 				Ut vitae nunc a libero volutpat gravida. Nam tempor nibh a purus
 				aliquam.</blockquote>
 			<p style="text-align: right; margin-right: 16px; margin-bottom: 15px">
-				<a href="#" class="button" style="font-size: 18px">Find out more</a>
+				<a href="#" class="button" style="font-size: 18px">Mais</a>
 			</p>
 			<!-- First Column -->
 			<div class="one-fourth">

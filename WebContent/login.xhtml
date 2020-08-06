@@ -5,14 +5,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
 	<title>Login</title>
-	<link
-		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		rel="stylesheet" id="bootstrap-css" />
-	<script
-		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 	<link rel="stylesheet" href="resources/css/login.css" />
+	
 </h:head>
 <body>
 
@@ -34,12 +29,15 @@
 							placeholder="Your Password *"
 							jsf:value="#{loginController.usuario.senha}" />
 					</div>
-					
+
 					<h:commandButton styleClass="btnSubmit" value="Login"
-						action="#{loginController.logar}"  >
+						action="#{loginController.logar}">
 					</h:commandButton>
-				
 					
+					
+<h:link value="Registre-se" outcome="usuario" style="color:white"/>
+				
+
 				</h:form>
 			</div>
 
