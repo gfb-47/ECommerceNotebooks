@@ -314,7 +314,7 @@ public class NotebookDAO extends DAO<Notebook> {
 
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
-		sql.append(" 	(modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco, estoque) ");
+		sql.append(" 	id, modelo, marca, processador, placavideo, memoriaram, portasusb, polegadas, sistemaoperacional, preco, estoque ");
 		sql.append("FROM ");
 		sql.append("	notebook ");
 		sql.append("WHERE ");
@@ -337,7 +337,7 @@ public class NotebookDAO extends DAO<Notebook> {
 				notebook.setMemoriaRAM(rs.getInt("memoriaram"));
 				notebook.setPortasUSB(rs.getInt("portasusb"));
 				notebook.setPolegadas(rs.getInt("polegadas"));
-				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("tipousuario")));
+				notebook.setSistemaOperacional(TipoSO.valueOf(rs.getInt("sistemaoperacional")));
 				notebook.setPreco(rs.getFloat("preco"));
 				notebook.setEstoque(rs.getInt("estoque"));
 			}

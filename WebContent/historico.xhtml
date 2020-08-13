@@ -14,21 +14,12 @@
 			<h:messages style="color:red" />
 			
 			<h:dataTable value="#{historicoVendaController.listaVenda}" var="obj">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{obj.id}" />
-				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Data</f:facet>
 					<h:outputLabel value="#{obj.data}">
-						<f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
+						<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
 					</h:outputLabel>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Cliente</f:facet>
-					<h:outputLabel value="#{obj.usuario.nome}"/>
 				</h:column>
 				
 				<h:column>

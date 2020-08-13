@@ -24,10 +24,10 @@ public class VendaDAO extends DAO<Venda> {
 		Connection conn = getConnection();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO venda");
+		sql.append("INSERT INTO public.venda");
 		sql.append(" (data, idusuario) ");
-		sql.append(" VALUES ");
-		sql.append(" ( ? , ? ) ");
+		sql.append("VALUES ");
+		sql.append(" (?, ?) " );
 		
 		PreparedStatement stat = null;
 		try {
@@ -43,10 +43,12 @@ public class VendaDAO extends DAO<Venda> {
 			venda.setId(rs.getInt("id"));
 			// inserindo os itens de venda
 			
-			ItemVendaDAO dao = new ItemVendaDAO();
+	//		ItemVendaDAO dao = new ItemVendaDAO();
+			Float totalVenda=0.0f;
 			for (ItemVenda itemVenda : venda.getListaItemVenda()) {
 				// informando quem eh o pai da crianca
 				itemVenda.setVenda(venda);
+				totalVenda+=itemVenda.getValor();
 				// salvando no banco de dados
 //				if (dao.create(itemVenda) == false) {
 //					throw new Exception("Erro ao incluir um item de venda");
@@ -57,9 +59,13 @@ public class VendaDAO extends DAO<Venda> {
 				
 			}
 			
+			venda.setTotalVenda(totalVenda);
+			
+			
+			
 			conn.commit();
 
-			System.out.println("Inclus�o realizada com sucesso.");
+			System.out.println("Inclusão realizada com sucesso.");
 			
 			retorno = true;
 
@@ -78,14 +84,14 @@ public class VendaDAO extends DAO<Venda> {
 	}
 	
 	// 
-	private boolean createItemVenda(ItemVenda itemVenda, Connection conn) {
+private boolean createItemVenda(ItemVenda itemVenda, Connection conn) {
 		
 		boolean retorno = false;
 //		Connection conn = getConnection();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO public.itemVenda ");
-		sql.append("	(valor, idvenda, idlivro) ");
+		sql.append("INSERT INTO itemVenda ");
+		sql.append("	(valor, idvenda, idnotebook) ");
 		sql.append("VALUES ");
 		sql.append("	(?, ?, ?) ");
 		
@@ -94,15 +100,21 @@ public class VendaDAO extends DAO<Venda> {
 		try {
 			stat = conn.prepareStatement(sql.toString());
 			
+			if(itemVenda.getValor()==null)
+				itemVenda.setValor(0.0f);
 			stat.setFloat(1, itemVenda.getValor());
 			stat.setInt(2, itemVenda.getVenda().getId());
 			stat.setInt(3, itemVenda.getNotebook().getId());
 			stat.execute();
 			
+			
 //			conn.commit();
 			
 			retorno = true;
 		} catch (SQLException e) {
+			e.printStackTrace();
+			rollback(conn);
+		} catch (Exception e) {
 			e.printStackTrace();
 			rollback(conn);
 		} finally {
@@ -112,7 +124,6 @@ public class VendaDAO extends DAO<Venda> {
 		return retorno;	
 		
 	}
-	
 	public List<Venda> findByUsuario(int idUsuario) {
 		List<Venda> listaVenda = new ArrayList<Venda>();
 		Connection conn = getConnection();
@@ -126,8 +137,7 @@ public class VendaDAO extends DAO<Venda> {
 		sql.append("  u.login,  ");
 		sql.append("  u.senha, ");
 		sql.append("  u.email, ");
-		sql.append("  u.tipousuario, ");
-		sql.append("  u.datanascimento ");					
+		sql.append("  u.tipousuario ");				
 		sql.append("FROM ");
 		sql.append("  public.venda v, ");
 		sql.append("  public.usuario u ");
@@ -154,8 +164,6 @@ public class VendaDAO extends DAO<Venda> {
 				venda.getUsuario().setSenha(rs.getString("senha"));
 				venda.getUsuario().setEmail(rs.getString("email"));
 				venda.getUsuario().setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
-				Date data = rs.getDate("datanascimento");
-				venda.getUsuario().setDataNascimento(data == null? null : data.toLocalDate());
 				// e os itens de venda?!!?
 				ItemVendaDAO dao = new ItemVendaDAO();
 				venda.setListaItemVenda(dao.findByVenda(venda));

@@ -2,31 +2,40 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <ui:composition template="template.xhtml">
-<ui:define name="content">
+	<h:head>
+		<title>Consulta de Notebook</title>
+	</h:head>
 
-	<center>
-		<h1>Venda de Notebook</h1>
 
+	<ui:define name="content">
 		<h:form>
-			<h:messages style="color:red" />
-			<h:panelGrid id="panelForm"  columns="3">
 
-				<h:outputLabel value="Nome do Notebook " />
-				<h:inputText value="#{vendaNotebookController.modelo}" />
-
+			<h:messages id="messages" errorStyle="color:red"
+				warnStyle="color:orange" infoStyle="color:green" globalOnly="false" />
+			<h:panelGrid columns="3">
+				<h:selectOneMenu value="#{consultaNotebookController.tipoFiltro}">
+					<f:selectItem itemValue="1" itemLabel="Marca" />
+					<f:selectItem itemValue="2" itemLabel="Modelo" />
+				</h:selectOneMenu>
+				<h:panelGroup>
+					<h:inputText value="#{consultaNotebookController.filtro}" />
+				</h:panelGroup>
 				<h:commandButton value="Pesquisar"
-					actionListener="#{vendaNotebookController.pesquisar}" >
-					<f:ajax execute="panelForm" render="@all" />
-				</h:commandButton>	
-				
+					actionListener="#{consultaNotebookController.pesquisar}"
+					style="cursor:pointer" />
+				<h:commandButton value="+ Novo Notebook"
+					action="#{consultaNotebookController.novoNotebook}"
+					rendered="#{templateController.usuarioLogado.tipoUsuario.id==0}" />
+
 			</h:panelGrid>
-			
-				<h:form id="formDataTable">
+
+		</h:form>
+		<h:form id="formDataTable">
 			<h:dataTable id="dataTable"
-				value="#{vendaNotebookController.listaNotebook}" var="obj">
+				value="#{consultaNotebookController.listaNotebook}" var="obj">
 				<h:column>
 					<f:facet name="header">Modelo</f:facet>
 					<h:outputLabel value="#{obj.modelo}" />
@@ -45,28 +54,29 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Preço</f:facet>
-					<h:outputLabel value="#{obj.preco}" />
+					<h:outputLabel value="#{obj.preco}">
+						<f:convertNumber locale="pt_BR" currencySymbol="R$"
+							type="currency" />
+					</h:outputLabel>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Estoque</f:facet>
 					<h:outputLabel value="#{obj.estoque}" />
 				</h:column>
-					<h:column>
+
+				<h:column>
 					<f:facet name="header">Ação</f:facet>
-					<h:commandButton value="Adicionar Carrinho"
-						actionListener="#{vendaNotebookController.adicionar(obj.id)}" >
+					<h:commandButton
+						actionListener="#{vendaNotebookController.adicionar(obj.id)}"
+						value="Adicionar Carrinho" style="cursor:pointer">
 						<f:ajax render="@all" execute="@this" />
 					</h:commandButton>
 				</h:column>
 			</h:dataTable>
 		</h:form>
-			
-			
-			
-			
-		</h:form>
-	</center>
-</ui:define>
-</ui:composition>	
-	
+	</ui:define>
+
+
+</ui:composition>
+
 </html>

@@ -6,13 +6,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
-			<div class="container">
-				<div class="navbar navbar-inverse">
+			
 					<div class="navbar-brand" style="width: 100%; text-align: center;">Detalhe da Venda</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-xs-updated">
-						<h:form styleClass="form-horizontal">
+				
+						<h:form >
 							<h:messages id="messages" style="color:red" globalOnly="false"  />
 		
 							<div class="mb-3">
@@ -22,7 +19,7 @@
 							<div class="mb-3">
 								<h:outputLabel value="Data da Venda: " styleClass="control-label" />
 								<h:outputText value=" #{detalheVendaController.venda.data}" styleClass="control-label" >
-									<f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
+									<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
 								</h:outputText>
 							</div>
 							<div class="mb-3">
@@ -39,7 +36,7 @@
 								<h:dataTable value="#{detalheVendaController.venda.listaItemVenda}" var="obj" styleClass="table table-striped table-hover">>
 									<h:column>
 										<f:facet name="header">Nome</f:facet>
-										<h:outputLabel value="#{obj.livro.descricao}" />
+										<h:outputLabel value="#{obj.notebook.modelo}" />
 									</h:column>
 									
 									<h:column>
@@ -51,13 +48,12 @@
 					
 								</h:dataTable>
 							</div>
-							<div class="mb-3">								
+													
 								<h:commandButton value="Voltar" onclick="history.go(-1); return false;" styleClass="col-md-2 mb-3 btn btn-default form-control" />
-							</div>
+						
 						</h:form>
-					</div>
-				</div>
-			</div>
+			
+				
 </ui:define>
 </ui:composition>	
 	

@@ -41,33 +41,32 @@
 				<ul class="navbar-nav m-auto">
 					<li class="nav-item"><a class="nav-link" href="template.xhtml">Home</a>
 					</li>
+
 					<li class="nav-item"><a class="nav-link"
-						href="consultanotebook.xhtml">Produtos</a></li>
-					<li class="nav-item"><a class="nav-link" href="vendanotebook.xhtml">Venda</a>
+						href="vendanotebook.xhtml">Venda</a></li>
+					<li class="nav-item"><a class="nav-link" href="carrinho.xhtml"
+						jsf:rendered="#{templateController.usuarioLogado==null}">Carrinho</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="carrinho.xhtml">Carrinho</a>
-					</li>
-					
-						<li class="nav-item"
-							jsf:rendered="#{templateController.usuarioLogado.tipoUsuario == TipoUsuario.ADMINISTRADOR}"><a
-							class="nav-link" href="admin.xhtml" >Usuarios</a></li>
+					<li class="nav-item"
+						jsf:rendered="#{templateController.usuarioLogado.tipoUsuario.id==0}"><a
+						class="nav-link" href="admin.xhtml">Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="historico.xhtml">Histórico</a></li>
 
 
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
+				<h:form>
 
 
 
-					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"
-						rendered="#{templateController.usuarioLogado != null}" />
-					<h:commandLink value=" (Sair)"
-						action="#{templateController.encerrarSessao}"
+					<h:outputLabel
+						value="Olá #{templateController.usuarioLogado.nome} "
 						rendered="#{templateController.usuarioLogado != null}"
 						style="color:white" />
-
-
-
-				</form>
+					<h:commandLink value=" Sair"
+						action="#{templateController.encerrarSessao}"
+						rendered="#{templateController.usuarioLogado != null}" />
+				</h:form>
 			</div>
 		</div>
 	</nav>
@@ -79,40 +78,38 @@
 			<!-- END prod wrapper -->
 			<div style="clear: both"></div>
 			<h1 style="padding: 20px 0">A maior loja de Notebooks do Brasil</h1>
-			<blockquote>Nulla hendrerit commodo tortor, vitae
-				elementum magna convallis nec. Nam tempor nibh a purus aliquam et
-				adipiscing elit gravida. Ut vitae nunc a libero volutpat gravida.
-				Nullam egestas mi sit amet dui scelerisque eu laoreet nisi ultrices.
-				Ut vitae nunc a libero volutpat gravida. Nam tempor nibh a purus
-				aliquam.</blockquote>
+			<blockquote>Vendemos computadores de todos os tipos e de todos os preços.</blockquote>
 			<p style="text-align: right; margin-right: 16px; margin-bottom: 15px">
-				<a href="#" class="button" style="font-size: 18px">Mais</a>
+				<a href="vendanotebook.xhtml" class="button" style="font-size: 18px">Mais</a>
 			</p>
 			<!-- First Column -->
 			<div class="one-fourth">
 				<div class="heading_bg">
-					<h2>Headline</h2>
+					<h2>All-in One</h2>
+<br/>
+<br/>
+<br/>
 				</div>
-				<img src="img/demo/2.jpg" width="217" alt="" />
+				<img src="resources/img/allinone.jpg" width="217" alt="" />
 			</div>
 			<!-- Second Column -->
 			<div class="one-fourth">
 				<div class="heading_bg">
-					<h2>Lorem</h2>
+					<h2>Laptop</h2>
 				</div>
-				<img src="img/demo/4.jpg" width="217" alt="" />
+				<img src="resources/img/laptop.png" width="217" alt="" />
 			</div>
 			<!-- Third Column -->
 			<div class="one-fourth">
 				<div class="heading_bg">
-					<h2>Ipsum</h2>
+					<h2>Computadores de Mesa</h2>
 				</div>
-				<img src="img/demo/3.jpg" width="217" alt="" />
+				<img src="resources/img/gabinete.jpg" width="217" alt="" />
 			</div>
 			<!-- Fourth Column -->
 			<div class="one-fourth last">
 				<div class="heading_bg">
-					<h2>Last</h2>
+				
 				</div>
 				<img src="img/demo/1.jpg" width="217" alt="" />
 			</div>
@@ -133,33 +130,29 @@
 		<div id="footer">
 			<!-- First Column -->
 			<div class="one-fourth">
-				<h3>Useful Links</h3>
+				<h3>Siga-nos nas redes sociais</h3>
 				<ul class="footer_links">
-					<li><a href="#">Lorem Ipsum</a></li>
-					<li><a href="#">Ellem Ciet</a></li>
-					<li><a href="#">Currivitas</a></li>
-					<li><a href="#">Salim Aritu</a></li>
+					<li><a href="https://www.facebook.com/">Facebook</a></li>
+					<li><a href="https://www.instagram.com">Instagram</a></li>
+					<li><a href="https://www.twitter.com">Twitter</a></li>
+					<li><a href="https://www.tikok.com">Tik Tok</a></li>
 				</ul>
 			</div>
 			<!-- Second Column -->
 			<div class="one-fourth">
-				<h3>Terms</h3>
+				<h3>Temos as melhores promoções do mercado</h3>
 				<ul class="footer_links">
-					<li><a href="#">Lorem Ipsum</a></li>
-					<li><a href="#">Ellem Ciet</a></li>
-					<li><a href="#">Currivitas</a></li>
-					<li><a href="#">Salim Aritu</a></li>
+					<li><a href="#">Confira já</a></li>
+					<li><a href="#">Fale Conosco</a></li>
+					<li><a href="#">Sugestões?</a></li>
+					<li><a href="#">Sobre nós</a></li>
 				</ul>
 			</div>
 			<!-- Third Column -->
 			<div class="one-fourth">
-				<h3>Information</h3>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-				sit amet enim id dui tincidunt vestibulum rhoncus a felis.
-				<div id="social_icons">
-					Theme by <a href="http://www.csstemplateheaven.com">CssTemplateHeaven</a><br />
-					Photos © <a href="http://dieterschneider.net">Dieter Schneider</a>
-				</div>
+				<h3>Informações</h3>
+				Promoções disponíveis apenas esse mês
+				
 			</div>
 			<!-- Fourth Column -->
 			<div class="one-fourth last">

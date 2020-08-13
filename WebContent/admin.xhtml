@@ -6,14 +6,14 @@
 
 <ui:composition template="template.xhtml">
 	<h:head>
-		<title>Crud de Usuarios</title>
+		<title>Controle de Usuarios</title>
 	</h:head>
 
 	<h:messages errorStyle="color:red" warnStyle="color:orange"
 		infoStyle="color:green" globalOnly="false" />
 
 	<ui:define name="content" >
-		<h:form rendered="#{templateController.usuarioLogado.tipoUsuario == TipoUsuario.ADMINISTRADOR}">
+		<h:form rendered="#{templateController.usuarioLogado.tipoUsuario != TipoUsuario.ADMINISTRADOR}">
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Nome:" />
 				<h:panelGroup>
@@ -97,6 +97,7 @@
 				</h:column>
 			</h:dataTable>
 		</h:form>
+		
 	</ui:define>
 </ui:composition>
 </html>

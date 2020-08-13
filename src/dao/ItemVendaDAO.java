@@ -21,8 +21,8 @@ public class ItemVendaDAO extends DAO<ItemVenda> {
 		Connection conn = getConnection();
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO public.itemVenda ");
-		sql.append("	(valor, idvenda, idNotebook) ");
+		sql.append("INSERT INTO public.itemvenda ");
+		sql.append("	(valor, idvenda, idnotebook) ");
 		sql.append("VALUES ");
 		sql.append("	(?, ?, ?) ");
 		
@@ -58,7 +58,7 @@ public class ItemVendaDAO extends DAO<ItemVenda> {
 		sql.append("SELECT ");
 		sql.append("  v.id, ");
 		sql.append("  v.valor, ");
-		sql.append("  v.idlivro, ");
+		sql.append("  v.idnotebook, ");
 		sql.append("  l.modelo, ");
 		sql.append("  l.marca, ");
 		sql.append("  l.processador, ");
@@ -70,9 +70,9 @@ public class ItemVendaDAO extends DAO<ItemVenda> {
 		sql.append("  l.estoque ");
 		sql.append("FROM ");
 		sql.append("  public.itemvenda v, ");
-		sql.append("  public.livro l ");
+		sql.append("  public.notebook l ");
 		sql.append("WHERE ");
-		sql.append("  v.idNotebook = l.id AND ");
+		sql.append("  v.idnotebook = l.id AND ");
 		sql.append("  v.idvenda = ? ");
 		
 		PreparedStatement stat = null;

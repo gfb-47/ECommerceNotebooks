@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import application.Session;
 import dao.VendaDAO;
+import model.ItemVenda;
 import model.Usuario;
 import model.Venda;
 
@@ -23,6 +24,7 @@ public class HistoricoVendaController implements Serializable {
 	
 
 	public List<Venda> getListaVenda() {
+		
 		if (listaVenda == null) {
 			VendaDAO dao = new VendaDAO();
 			Usuario usuario = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
@@ -32,6 +34,7 @@ public class HistoricoVendaController implements Serializable {
 		}
 		return listaVenda;
 	}
+	
 	
 	public String detalhes(Venda venda) {
 		Flash flash = FacesContext.

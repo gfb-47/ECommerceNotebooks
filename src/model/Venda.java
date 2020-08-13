@@ -8,10 +8,9 @@ public class Venda extends Entity<Venda> {
 	private LocalDate data;
 	private Usuario usuario;
 	private List<ItemVenda> listaItemVenda;
-
-	// campo calculado
 	private Float totalVenda = 0.0f;
-
+	
+	
 	public LocalDate getData() {
 		return data;
 	}
@@ -36,6 +35,10 @@ public class Venda extends Entity<Venda> {
 		this.listaItemVenda = listaItemVenda;
 	}
 
+	
+
+	
+
 	public Float getTotalVenda() {
 		return totalVenda;
 	}
@@ -43,5 +46,8 @@ public class Venda extends Entity<Venda> {
 	public void setTotalVenda(Float totalVenda) {
 		this.totalVenda = totalVenda;
 	}
+	
+	
+	
 
 }

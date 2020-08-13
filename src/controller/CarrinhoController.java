@@ -23,6 +23,8 @@ public class CarrinhoController implements Serializable{
 	private static final long serialVersionUID = 4155657648345877585L;
 	
 	private Venda venda;
+	private List<ItemVenda> carrinho;
+	private float totalCarrinho;
 
 	public Venda getVenda() {
 		if (venda == null) 
@@ -41,7 +43,15 @@ public class CarrinhoController implements Serializable{
 	}
 	
 	public void remover(int idProduto) {
-		// alunos vao implementar
+		List<ItemVenda> carrinho = (ArrayList<ItemVenda>) Session.getInstance().getAttribute("carrinho");
+		int cont = 0;
+		for (ItemVenda itemVenda : carrinho) {
+			if (itemVenda.getNotebook().getId() == idProduto) {
+				carrinho.remove(cont);
+				break;
+			}
+			cont++;
+		}
 	}
 	
 	public void finalizar() {
@@ -55,6 +65,7 @@ public class CarrinhoController implements Serializable{
 		venda.setData(LocalDate.now());
 		venda.setUsuario(usuario);
 		List<ItemVenda> carrinho = (ArrayList<ItemVenda>)  Session.getInstance().getAttribute("carrinho");
+		this.carrinho=carrinho;
 		venda.setListaItemVenda(carrinho);
 		// salvar no banco
 		VendaDAO dao = new VendaDAO();
@@ -73,6 +84,13 @@ public class CarrinhoController implements Serializable{
 		this.venda = venda;
 	}
 	
-	
+
+	public void totalListaItemVenda() {
+		float total=0.0f;
+		for (ItemVenda itemVenda : carrinho) {
+			total+=itemVenda.getValor();
+		}
+		totalCarrinho=total;
+	}
 	
 }
